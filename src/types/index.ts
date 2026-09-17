@@ -7,7 +7,7 @@ export interface Meal {
     country?: string;
     ingredients?: string[];
     measurements?: string[];
-    instructions?: string;
+    instructions?: string[];
     source?: string;
     videoURL?: string;
 }
