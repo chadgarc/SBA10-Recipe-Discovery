@@ -1,25 +1,24 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useFetch } from "../CustomHooks/FetchData";
+import { useFetch } from "../CustomHooks/useFetch";
+import type { DataContextType, queryType, Meal } from "../types";
 
-const DataContext = createContext(null);
+const DataContext = createContext<DataContextType | null>(null);
 
 export function DataContextProvider({ children }: { children: React.ReactNode }) {
-    const [recipes, setRecipes] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
-    const [favorites, setFavorites] = useState(null);
-    const [categories, setCategories] = useState(null);
-    const [areas, setAreas] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [searchType, setSearchType] = useState<queryType>('search');
+    const { data: recipes, loading, error } = useFetch({ query: searchQuery, type: searchType });
+    const [favorites, setFavorites] = useState<Meal[]>([]);
+    const [categories, setCategories] = useState<string[]>([]);
 
     useEffect(() => {
     }, []); 
 
-    const addFavorites = (recipe: any) => setFavorites([...favorites, recipe]);
+    const addFavorites = (recipe: Meal) => setFavorites((prev) => [...prev, recipe]);
 
     return (
-        <DataContext.Provider value={{setRecipes, recipes, setSearchQuery, searchQuery,
-        favorites, addFavorites, categories, areas, setLoading, loading, error, setError}}>
+        <DataContext.Provider value={{setSearchQuery, setSearchType, recipes, searchQuery, searchType,
+        favorites, addFavorites, categories, loading, error}}>
             {children}
         </DataContext.Provider>
     )

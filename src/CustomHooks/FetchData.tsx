@@ -10,8 +10,7 @@ export async function fetchBySearch(query: string) {
         const data = await response.json();
         return data.meals.map((meal: any) => normalizeMeal(meal));
     } catch (error) {
-        console.error(error);
-        return [];
+        throw new Error("Failed to search data:" + error);
     }
 }
 
@@ -21,8 +20,7 @@ export async function fetchRecipeById(id: string) {
         const data = await response.json();
         return normalizeMeal(data.meals[0]);
     } catch (error) {
-        console.error(error);
-        return null;
+        throw new Error("Failed to lookup recipe:" + error);
     }
 }
 
@@ -32,8 +30,7 @@ export async function fetchRecipesStartingWithLetter(letter: string) {
         const data = await response.json();
         return data.meals.map((meal: any) => normalizeMeal(meal));
     } catch (error) {
-        console.error(error);
-        return [];
+        throw new Error(`Failed to fetch recipes starting with ${letter}: ${error}`);
     }
 }
 
@@ -43,8 +40,7 @@ export async function fetchByCategory(category: string) {
         const data = await response.json();
         return data.meals.map((meal: any) => normalizeMeal(meal));
     } catch (error) {
-        console.error(error);
-        return [];
+        throw new Error(`Failed to fetch category ${category}: ${error}`);
     }
 }
 
@@ -60,8 +56,7 @@ export async function fetchByIngredient(ingredient: string) {
             } as Meal;
         });
     } catch (error) {
-        console.error(error);
-        return [];
+        throw new Error(`Failed to fetch recipes by ingredient ${ingredient}: ${error}`);
     }
 }
 
@@ -72,8 +67,17 @@ export async function fetchCategories() {
         console.log(data.meals.map((category: any) => `${category.strCategory}`));
         return data.meals.map((category: any) => `${category.strCategory}`);
     } catch (error) {
-        console.error(error);
-        return [];
+        throw new Error("Failed to fetch categories:" + error);
+    }
+}
+
+export async function fetchRandomRecipe(){
+    try {
+        const response = await fetch(BASE_URL + 'random.php');
+        const data = await response.json();
+        return [normalizeMeal(data.meals[0])];
+    } catch (error) {
+        throw new Error("Failed to fetch random recipe: " + error);
     }
 }
 
