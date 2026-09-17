@@ -1,5 +1,5 @@
 
-export type queryType = 'search' | 'category' | 'ingredient' | 'categories' | 'random';
+export type queryType = 'search' | 'category' | 'ingredient' | 'categories' | 'random' | 'random10' | 'letter';
 
 export interface FetchParams {
     query?: string;
@@ -20,14 +20,17 @@ export interface Meal {
 }
 
 export interface DataContextType {
+    getRecipesByLetter: (query: string) => void;
+    getRecipesByCategory: (query: string) => void;
+    getRecipesByIngredient: (query: string) => void;
+    getRecipesByRandom: (query: string) => void;
     setSearchQuery: (searchQuery: string) => void;
-    setSearchType: (searchType: queryType) => void;
     recipes: Meal[];
     searchQuery: string;
-    searchType: queryType;
     favorites: Meal[];
-    addFavorites: (recipe: Meal) => void;
+    toggleFavorites: (recipe: Meal) => void;
     categories: string[];
     loading: boolean;
     error: any;
+    isLoading: boolean;
 }

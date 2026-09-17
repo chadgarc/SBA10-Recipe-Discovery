@@ -71,6 +71,19 @@ export async function fetchCategories() {
     }
 }
 
+export async function fetchRandomRecipes(count = 10) {
+    try {
+        const recipes = await Promise.all(
+            Array.from({ length: count }, () =>
+                fetch(BASE_URL + 'random.php').then(r => r.json()).then(d => normalizeMeal(d.meals[0]))
+            )
+        );
+        return recipes;
+    } catch (error) {
+        throw new Error("Failed to fetch random recipes: " + error);
+    }
+}
+
 export async function fetchRandomRecipe(){
     try {
         const response = await fetch(BASE_URL + 'random.php');
