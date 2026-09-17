@@ -6,7 +6,7 @@ const INGREDIENT_IMAGE_URL = 'https://themealdb.com/images/ingredients/'
 
 export async function fetchBySearch(query: string) {
     try {
-        const response = await fetch(BASE_URL + 'search.php?s=' + query.trim().toLowerCase().replace(' ', '_'));
+        const response = await fetch(BASE_URL + 'search.php?s=' + query.trim().toLowerCase().replaceAll(' ', '_'));
         const data = await response.json();
         return data.meals.map((meal: any) => normalizeMeal(meal));
     } catch (error) {
@@ -50,7 +50,7 @@ export async function fetchByCategory(category: string) {
 
 export async function fetchByIngredient(ingredient: string) {
     try {
-        const response = await fetch(BASE_URL + 'filter.php?i=' + ingredient.toLowerCase().replace(' ', '_'));
+        const response = await fetch(BASE_URL + 'filter.php?i=' + ingredient.toLowerCase().replaceAll(' ', '_'));
         const data = await response.json();
         return data.meals.map((meal: any) => {
             return {
@@ -85,7 +85,7 @@ function normalizeMeal(meal: any): Meal {
         category: meal.strCategory || 'Miscellaneous',
         country: meal.strCountry || 'Unknown',
         instructions: meal.strInstructions
-            ?.replace('\r', '\n')
+            ?.replaceAll('\r', '\n')
             ?.split('\n')
             .filter((instruction) => instruction.trim() !== '') || ['No instructions available'],
         ingredients: [
