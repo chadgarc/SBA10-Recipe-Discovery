@@ -6,9 +6,9 @@ export function RecipeCard(recipe: Meal){
     return (
         <Link to={`/recipe/${id}`} className="card bg-base-100 shadow-xl w-65">
             <div className="hover-3d h-full">
-            <figure className="max-w-100 rounded-2xl">
-                <div>
-                    <div className="card bg-base-100 shadow-sm">
+            <figure className="max-w-100 rounded-2xl h-full">
+                <div className="h-full w-full">
+                    <div className="card bg-base-100 shadow-sm h-full">
                         <figure>
                             <img className="aspect-ratio-4/3"
                             src={`${imageURL}/medium`}
