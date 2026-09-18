@@ -34,13 +34,13 @@ export function Recipe() {
             ) : null}
             <h3 className="font-semibold mt-4">Instructions</h3>
             <ul className="list-disc list-inside">
-                {recipeData.instructions?.map((inst, i) => (
+                {recipeData.instructions?.map((inst: string, i: number) => (
                     <li key={i}>{inst}</li>
                 ))}
             </ul>
             <h3 className="font-semibold mt-4">Ingredients</h3>
             <ul className="list-disc list-inside">
-                {recipeData.ingredients?.map((ing, i) => (
+                {recipeData.ingredients?.map((ing: string, i: number) => (
                     <li key={i}>{ing} — {recipeData.measurements?.[i] || ''}</li>
                 ))}
             </ul>

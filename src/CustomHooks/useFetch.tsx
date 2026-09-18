@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import * as FetchData from "./FetchData";
 import type { FetchParams } from "../types";
-import type { Meal, Ingredient } from "../types";
 
 /**
  * Custom hook that fetches data from TheMealDB API based on query and type parameters.
@@ -20,7 +19,7 @@ import type { Meal, Ingredient } from "../types";
 export function useFetch({query = '', type = "search"}:FetchParams){
     const [error, setError] = useState<Error | null>(null);
     const [loading, setLoading] = useState(true);
-    const [data, setData] = useState<Meal[] | string[] | Ingredient[] | null>(null);
+    const [data, setData] = useState<any[] | null>(null);
 
     useEffect(() => {
         const fetchData = async() => {
