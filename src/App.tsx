@@ -18,6 +18,7 @@ function App() {
             <Route path="/recipe/:recipeId" element={<Recipe />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/search/:query" element={<Search />} />
+            <Route path="/ingredients" element={<Search />} />
           </Route>
         </Routes>
       </HashRouter>

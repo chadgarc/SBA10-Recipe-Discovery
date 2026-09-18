@@ -1,5 +1,5 @@
 
-export type queryType = 'search' | 'category' | 'ingredient' | 'categories' | 'random' | 'random10' | 'letter';
+export type queryType = 'search' | 'category' | 'ingredient' | 'categories' | 'random' | 'random10' | 'letter' | 'ingredients';
 
 export interface FetchParams {
     query?: string;
@@ -19,7 +19,15 @@ export interface Meal {
     videoURL?: string;
 }
 
+export interface Ingredient {
+    id?: string;
+    name: string;
+    imageURL: string;
+}
+
 export interface DataContextType {
+    ingredients: Ingredient[];
+    getRecipesBySearch: (query: string) => void;
     getRecipesByLetter: (query: string) => void;
     getRecipesByCategory: (query: string) => void;
     getRecipesByIngredient: (query: string) => void;
