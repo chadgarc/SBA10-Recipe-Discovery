@@ -17,7 +17,19 @@ export function Recipe() {
         <section className="py-6 max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold mb-4 text-center">{recipeData.name}</h2>
             <div className="card bg-base-100 shadow-xl">
-                <figure><img src={recipeData.imageURL} alt={recipeData.name} /></figure>
+                <div className="hover-3d">
+                    <figure className="rounded-2xl w-60 md:w-100 lg:w-150 aspect-[4/3]">
+                        <img src={recipeData.imageURL} alt={recipeData.name} />
+                    </figure>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                </div>
                 <div className="card-body">
                     <h2 className="card-title">{recipeData.name}</h2>
                     {recipeData.country && <p>Country: {recipeData.country}</p>}
