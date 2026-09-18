@@ -1,9 +1,12 @@
 import { DataContextProvider } from "./DataContext.tsx"
+import { FavoritesProvider } from "./FavoritesContext"
 
 export function Providers({children}:{children:React.ReactNode}){
     return(
-        <DataContextProvider>
-            {children}
-        </DataContextProvider>
+        <FavoritesProvider>
+            <DataContextProvider>
+                {children}
+            </DataContextProvider>
+        </FavoritesProvider>
     )
 }
