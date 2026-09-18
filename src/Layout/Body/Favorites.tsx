@@ -13,7 +13,7 @@ export function Favorites() {
             {favorites.length === 0 ? (
                 <p className="text-center py-10 text-gray-500">No favorites yet. Start adding recipes!</p>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 justify-items-center">
                     {favorites.map((favRecipe) => (
                         <RecipeCard key={favRecipe.id} {...favRecipe} />
                     ))}

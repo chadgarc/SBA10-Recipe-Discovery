@@ -24,7 +24,7 @@ export function Home() {
 
             <div className="mb-6 flex flex-col justify-center items-center">
                 <h3 className="text-lg font-semibold mb-2 text-center">Search by Ingredients</h3>
-                <Link to="/ingredients" className="btn btn-primary">Browse Ingredients</Link>
+                <Link to="/ingredients" className="btn btn-sm btn-outline">Browse Ingredients</Link>
             </div>
 
             <div className="mb-6 flex flex-col justify-center items-center">

@@ -30,6 +30,7 @@ export default function NavBar() {
                         <ul className="menu menu-horizontal">
                         {/* Navbar menu content here */}
                         <li><SearchBar /></li>
+                        <li><Link to="/favorites"><button className="btn btn-sm btn-outline">Favorites</button></Link></li>
                         </ul>
                     </div>
                     </div>
@@ -38,8 +39,10 @@ export default function NavBar() {
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-base-200 min-h-full w-80 p-4">
+                    <li><label htmlFor="my-drawer-2" className="btn btn-sm btn-ghost mb-2">✕ Cerrar</label></li>
                     {/* Sidebar content here */}
                         <li><SearchBar vertical /></li>
+                        <li><Link to="/favorites">Favorites</Link></li>
                     </ul>
                 </div>
             </div>

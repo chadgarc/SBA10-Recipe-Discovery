@@ -13,7 +13,7 @@ export function Search() {
         <section className="text-center py-6">
             <button className="btn btn-sm btn-outline mb-4" onClick={() => navigate(-1)}>← Back</button>
             <h2 className="text-xl font-semibold mb-4">Search: {displayQuery}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 justify-items-center">
                 {loading && <Loading />}
                 {error && <p className="text-center text-red-500">Error: {error.message}</p>}
                 {!loading && !error && recipes && recipes.length === 0 && <p className="text-center text-gray-500 mx-auto">No matches</p>}
