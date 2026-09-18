@@ -14,6 +14,11 @@ export function Recipe() {
     if (error) return <p className="text-center py-20 text-red-500">Error: {(error as Error).message}</p>;
     if (!recipeData) return <p className="text-center py-20">No recipe found</p>;
 
+    const getEmbedUrl = (url: string) => {
+        const match = url.match(/[?&]v=([^&]+)/);
+        return match ? `https://www.youtube.com/embed/${match[1]}` : url;
+    };
+
     return (
         <section className="py-6 max-w-4xl mx-auto">
             <button className="btn btn-sm btn-outline mb-4" onClick={() => navigate(-1)}>← Back</button>
@@ -24,7 +29,7 @@ export function Recipe() {
             {recipeData.country && <p>Country: {recipeData.country}</p>}
             {recipeData.videoURL ? (
                 <div className="embed-responsive embed-responsive-16by9 relative w-full overflow-hidden" style={{paddingTop: "56.25%"}}>
-                    <iframe className="embed-responsive-item absolute bottom-0 left-0 right-0 top-0 h-full w-full" src={recipeData.videoURL} allowFullScreen />
+                    <iframe className="embed-responsive-item absolute bottom-0 left-0 right-0 top-0 h-full w-full" src={getEmbedUrl(recipeData.videoURL)} allowFullScreen />
                 </div>
             ) : null}
             <h3 className="font-semibold mt-4">Instructions</h3>

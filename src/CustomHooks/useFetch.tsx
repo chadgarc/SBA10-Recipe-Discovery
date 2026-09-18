@@ -11,6 +11,7 @@ export function useFetch({query, type = "search"}:FetchParams){
         const fetchData = async() => {
             if((!query || query === '') && type !== 'categories' && type !== 'random' && type !== 'random10') return;
             setLoading(true);
+            setError(null);
             try{
             switch (type) {
                 case "search":

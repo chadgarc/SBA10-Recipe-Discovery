@@ -7,6 +7,7 @@ export async function fetchBySearch(query: string) {
     try {
         const response = await fetch(BASE_URL + 'search.php?s=' + query.trim().toLowerCase().replaceAll(' ', '_'));
         const data = await response.json();
+        if(!data.meals) return [];
         return data.meals.map((meal: any) => normalizeMeal(meal));
     } catch (error) {
         throw new Error("Failed to search data:" + error);
@@ -17,6 +18,7 @@ export async function fetchRecipeById(id: string) {
     try {
         const response = await fetch(BASE_URL + 'lookup.php?i=' + id);
         const data = await response.json();
+        if(!data.meals) return [];
         return [normalizeMeal(data.meals[0])];
     } catch (error) {
         throw new Error("Failed to lookup recipe:" + error);
@@ -27,6 +29,7 @@ export async function fetchRecipesStartingWithLetter(letter: string) {
     try {
         const response = await fetch(BASE_URL + 'search.php?f=' + letter.toLowerCase());
         const data = await response.json();
+        if(!data.meals) return [];
         return data.meals.map((meal: any) => normalizeMeal(meal));
     } catch (error) {
         throw new Error(`Failed to fetch recipes starting with ${letter}: ${error}`);
@@ -37,6 +40,7 @@ export async function fetchByCategory(category: string) {
     try {
         const response = await fetch(BASE_URL + 'filter.php?c=' + category.toLowerCase());
         const data = await response.json();
+        if(!data.meals) return [];
         return data.meals.map((meal: any) => normalizeMeal(meal));
     } catch (error) {
         throw new Error(`Failed to fetch category ${category}: ${error}`);
@@ -47,6 +51,7 @@ export async function fetchByIngredient(ingredient: string) {
     try {
         const response = await fetch(BASE_URL + 'filter.php?i=' + ingredient.toLowerCase().replaceAll(' ', '_'));
         const data = await response.json();
+        if(!data.meals) return [];
         return data.meals.map((meal: any) => {
             return {
                 id: meal.idMeal,
@@ -63,6 +68,7 @@ export async function fetchCategories() {
     try {
         const response = await fetch(BASE_URL + 'list.php?c=list');
         const data = await response.json();
+        if(!data.meals) return [];
         console.log(data.meals.map((category: any) => `${category.strCategory}`));
         return data.meals.map((category: any) => `${category.strCategory}`);
     } catch (error) {
@@ -74,6 +80,7 @@ export async function fetchIngredientsList() {
     try {
         const response = await fetch(BASE_URL + 'list.php?i=list');
         const data = await response.json();
+        if(!data.meals) return [];
         return data.meals.map((ing: any) => {
             const { idIngredient, strIngredient, strThumb } = ing;
             return { id: idIngredient, name: strIngredient, imageURL: strThumb } as Ingredient
@@ -87,7 +94,10 @@ export async function fetchRandomRecipes(count = 10) {
     try {
         const recipes = await Promise.all(
             Array.from({ length: count }, () =>
-                fetch(BASE_URL + 'random.php').then(r => r.json()).then(d => normalizeMeal(d.meals[0]))
+                fetch(BASE_URL + 'random.php').then(r => r.json()).then(d => {
+                    if(!d.meals) return normalizeMeal({idMeal: '', strMeal: '', strMealThumb: ''} as any);
+                    return normalizeMeal(d.meals[0]);
+                })
             )
         );
         return recipes;
@@ -100,6 +110,7 @@ export async function fetchRandomRecipe(){
     try {
         const response = await fetch(BASE_URL + 'random.php');
         const data = await response.json();
+        if(!data.meals) return [];
         return [normalizeMeal(data.meals[0])];
     } catch (error) {
         throw new Error("Failed to fetch random recipe: " + error);
@@ -162,6 +173,6 @@ function normalizeMeal(meal: any): Meal {
             meal.strMeasure20 || '',
         ].filter((measurement) => measurement.trim() !== '') || ['No measurements available'],
         source: meal.strSource || 'No Source Available',
-        videoURL: meal.strYoutube || 'No video Available',
+        videoURL: meal.strYoutube || undefined,
     };
 }
