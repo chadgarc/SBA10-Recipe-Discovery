@@ -1,5 +1,5 @@
 import { PacmanLoader } from "react-spinners";
 
 export function Loading() {
-    return <PacmanLoader color="#f59e0b" />;
+    return <div className="flex justify-center items-center"><PacmanLoader color="#f59e0b" /></div>;
 }

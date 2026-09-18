@@ -1,6 +1,8 @@
 import { useDataContext } from "../../contextsAndProviders/DataContext";
 import { LetterPagination } from "../../Components/LetterPagination";
 import { RecipesCardList } from "../../Components/RecipesPresentation/RecipesCardList";
+import { Link } from "react-router-dom";
+import { Loading } from "../../Components/Loading";
 
 export function Home() {
     const { categories, recipes, loading } = useDataContext();
@@ -13,9 +15,11 @@ export function Home() {
                 <h3 className="text-lg font-semibold mb-2 text-center">By Category</h3>
                 <div className="join flex-wrap justify-center gap-2">
                     {categories?.map((category) => (
-                        <button key={category} className="join-item btn btn-sm btn-outline">
-                            {category}
-                        </button>
+                        <Link to={`/category/${category}`} key={category}>
+                            <button className="join-item btn btn-sm btn-outline">
+                                {category}
+                            </button>
+                        </Link>
                     ))}
                 </div>
             </div>
@@ -26,7 +30,7 @@ export function Home() {
             </div>
 
             <div className="mx-auto">
-                {loading && <p className="mx-auto">Loading...</p>}
+                {loading && <Loading />}
                 {!loading && recipes &&
                 <section className="mx-auto">
                     <RecipesCardList recipes={recipes} />
