@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import * as FetchData from "./FetchData";
 import type { FetchParams } from "../types";
+import type { Meal, Ingredient } from "../types";
 
 /**
  * Custom hook that fetches data from TheMealDB API based on query and type parameters.
@@ -16,10 +17,10 @@ import type { FetchParams } from "../types";
  * if (loading) return <Spinner />;
  * return <RecipeList recipes={data} />;
  */
-export function useFetch({query, type = "search"}:FetchParams){
-    const [error, setError] = useState(null);
+export function useFetch({query = '', type = "search"}:FetchParams){
+    const [error, setError] = useState<Error | null>(null);
     const [loading, setLoading] = useState(true);
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<Meal[] | string[] | Ingredient[] | null>(null);
 
     useEffect(() => {
         const fetchData = async() => {
@@ -53,12 +54,12 @@ export function useFetch({query, type = "search"}:FetchParams){
                     setData(await FetchData.fetchRandomRecipes(10));
                     break;
                 case "id":
-                    setData(await FetchData.fetchRecipeById(query || ''));
+                    setData(await FetchData.fetchRecipeById(query));
                     break;
                 default:
                     break;
             }}catch(e){
-                setError(e);
+                setError(e instanceof Error ? e : new Error(String(e)));
             }finally{
                 setLoading(false);
             }

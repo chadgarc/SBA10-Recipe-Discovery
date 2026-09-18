@@ -26,16 +26,16 @@ export interface Ingredient {
 }
 
 export interface DataContextType {
-    ingredients: Ingredient[];
+    ingredients: Ingredient[] | null;
     getRecipesBySearch: (query: string) => void;
     getRecipesByLetter: (query: string) => void;
     getRecipesByCategory: (query: string) => void;
     getRecipesByIngredient: (query: string) => void;
     getRecipesByRandom: (query: string) => void;
     setSearchQuery: (searchQuery: string) => void;
-    recipes: Meal[];
+    recipes: Meal[] | null;
     searchQuery: string;
-    categories: string[];
+    categories: string[] | null;
     loading: boolean;
     error: any;
     isLoading: boolean;

@@ -8,6 +8,7 @@ import { Search } from "./Layout/Body/Search"
 import {Ingredients} from "./Layout/Body/Ingredients"
 import { FavoritesProvider } from "./contextsAndProviders/FavoritesContext"
 import { ByIngredient } from "./Layout/Body/ByIngredient"
+import { NotFound } from "./Layout/Body/NotFound"
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
               <Route path="/search/:query" element={<Search />} />
               <Route path="/ingredients" element={<Ingredients/>} />
               <Route path="/ingredients/:ingredient" element={<ByIngredient />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </FavoritesProvider>
