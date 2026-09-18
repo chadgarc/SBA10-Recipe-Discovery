@@ -15,13 +15,16 @@ export function Home() {
                 <h3 className="text-lg font-semibold mb-2 text-center">By Category</h3>
                 <div className="join flex-wrap justify-center gap-2">
                     {categories?.map((category) => (
-                        <Link to={`/category/${category}`} key={category}>
-                            <button className="join-item btn btn-sm btn-outline">
-                                {category}
-                            </button>
+                        <Link to={`/category/${category}`} key={category} className="btn btn-sm btn-outline">
+                            {category}
                         </Link>
                     ))}
                 </div>
+            </div>
+
+            <div className="mb-6 flex flex-col justify-center items-center">
+                <h3 className="text-lg font-semibold mb-2 text-center">Search by Ingredients</h3>
+                <Link to="/ingredients" className="btn btn-primary">Browse Ingredients</Link>
             </div>
 
             <div className="mb-6 flex flex-col justify-center items-center">

@@ -1,5 +1,5 @@
 
-export type queryType = 'search' | 'category' | 'ingredient' | 'categories' | 'random' | 'random10' | 'letter' | 'ingredients' | 'id';
+export type queryType = 'search' | 'category' | 'ingredient' | 'ingredients' | 'categories' | 'random' | 'random10' | 'letter' | 'ingredients' | 'id';
 
 export interface FetchParams {
     query?: string;

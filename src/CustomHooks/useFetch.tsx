@@ -9,7 +9,7 @@ export function useFetch({query, type = "search"}:FetchParams){
 
     useEffect(() => {
         const fetchData = async() => {
-            if((!query || query === '') && type !== 'categories' && type !== 'random' && type !== 'random10') return;
+            if((!query || query === '') && type !== 'ingredients' && type !== 'categories'  && type !== 'random' && type !== 'random10') return;
             setLoading(true);
             setError(null);
             try{
@@ -25,6 +25,9 @@ export function useFetch({query, type = "search"}:FetchParams){
                     break;
                 case "ingredient":
                     setData(await FetchData.fetchByIngredient(query));
+                    break;
+                case "ingredients":
+                    setData(await FetchData.fetchIngredientsList());
                     break;
                 case "categories":
                     setData(await FetchData.fetchCategories());
