@@ -1,6 +1,6 @@
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { useFetch } from "../CustomHooks/useFetch";
-import type { DataContextType, Meal, queryType } from "../types";
+import type { DataContextType, queryType } from "../types";
 
 const DataContext = createContext<DataContextType | null>(null);
 
@@ -15,28 +15,28 @@ export function DataContextProvider({ children }: { children: React.ReactNode })
     const isLoading = loading;
     
     const getRecipesBySearch = (query: string) => {
-        setSearchQuery(query);
         setFetchType('search');
+        setSearchQuery(query);
     };
     
     const getRecipesByLetter = (query: string) => {
-        setSearchQuery(query);
         setFetchType('letter');
+        setSearchQuery(query);
     };
     
     const getRecipesByCategory = (query: string) => {
-        setSearchQuery(query);
         setFetchType('category');
+        setSearchQuery(query);
     };
     
     const getRecipesByIngredient = (query: string) => {
-        setSearchQuery(query);
         setFetchType('ingredient');
+        setSearchQuery(query);
     };
     
     const getRecipesByRandom = (query: string) => {
-        setSearchQuery(query);
         setFetchType('random');
+        setSearchQuery(query);
     };
     
     return (

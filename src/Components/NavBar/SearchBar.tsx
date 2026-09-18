@@ -5,12 +5,12 @@ import { useDataContext } from "../../contextsAndProviders/DataContext";
 export function SearchBar({ vertical = false }: { vertical?: boolean }){
     const [query, setQuery] = useState('');
     const navigate = useNavigate();
-    const { setSearchQuery } = useDataContext();
+    const { getRecipesBySearch} = useDataContext();
 
     const handleSearch = () => {
         if(!query.trim()) return;
         const formattedQuery = query.trim().toLowerCase().replace(/\s/g, '_');
-        setSearchQuery(query.trim());
+        getRecipesBySearch(query.trim());
         navigate('/search/' + formattedQuery);
     };
 
