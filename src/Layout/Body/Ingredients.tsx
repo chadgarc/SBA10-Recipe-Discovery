@@ -1,17 +1,23 @@
-import { useNavigate } from "react-router-dom";
-import { useDataContext } from "../../contextsAndProviders/DataContext";
-import { IngredientCardList } from "../../Components/RecipeDetails/IngredientCardList";
-import { Loading } from "../../Components/Loading";
 import { Link } from "react-router-dom";
+import { useDataContext } from "../../contextsAndProviders/DataContext";
+import { IngredientCard } from "../../Components/RecipeDetails/IngredientCard";
+import { Loading } from "../../Components/Loading";
 
 export function Ingredients() {
-    const navigate = useNavigate();
     const {ingredients} = useDataContext();
     return (
         <section className="p-5">
-            <button className="btn btn-sm btn-outline mb-4" onClick={() => navigate(-1)}>← Back</button>
+            <button className="btn btn-sm btn-outline mb-4" onClick={() => window.history.back()}>← Back</button>
             <h1 className="">Ingredients</h1>
-            {ingredients && ingredients.length > 0 ? <Link to="/ingredients"><IngredientCardList ingredients={ingredients}/></Link> : <Loading />}
+            {ingredients && ingredients.length > 0 ? (
+                <div className="grid grid-cols-[repeat(auto-fit,minmax(270px,1fr))] gap-4 justify-items-center">
+                    {ingredients.map((ingredient) => (
+                        <Link key={ingredient.id} to={`/ingredients/${ingredient.name}`}>
+                            <IngredientCard {...ingredient} />
+                        </Link>
+                    ))}
+                </div>
+            ) : <Loading />}
         </section>
     )
 }

@@ -7,6 +7,7 @@ import { Favorites } from "./Layout/Body/Favorites"
 import { Search } from "./Layout/Body/Search"
 import {Ingredients} from "./Layout/Body/Ingredients"
 import { FavoritesProvider } from "./contextsAndProviders/FavoritesContext"
+import { ByIngredient } from "./Layout/Body/ByIngredient"
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/search/:query" element={<Search />} />
               <Route path="/ingredients" element={<Ingredients/>} />
-              <Route path="/ingredients/:ingredient" element={<Ingredients/>} />
+              <Route path="/ingredients/:ingredient" element={<ByIngredient />} />
             </Route>
           </Routes>
         </FavoritesProvider>
