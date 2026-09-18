@@ -1,7 +1,6 @@
 import { SearchBar } from "../../Components/NavBar/SearchBar"
-
+import { Link } from "react-router-dom"
 export default function NavBar() {
-    const item1 = <SearchBar />
     return (
         <>
             <div className="drawer">
@@ -26,11 +25,11 @@ export default function NavBar() {
                         </svg>
                         </label>
                     </div>
-                    <div className="mx-2 flex-1 px-2">Navbar Title</div>
+                    <Link to="/"><div className="mx-2 flex-1 px-2"><h1 className="font-serif">Recipes</h1></div></Link>
                     <div className="hidden flex-none lg:block">
                         <ul className="menu menu-horizontal">
                         {/* Navbar menu content here */}
-                        <li>{item1}</li>
+                        <li><SearchBar /></li>
                         </ul>
                     </div>
                     </div>
@@ -40,7 +39,7 @@ export default function NavBar() {
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-base-200 min-h-full w-80 p-4">
                     {/* Sidebar content here */}
-                        <li>{item1}</li>
+                        <li><SearchBar vertical /></li>
                     </ul>
                 </div>
             </div>
