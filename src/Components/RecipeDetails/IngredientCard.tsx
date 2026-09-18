@@ -4,17 +4,17 @@ export function IngredientCard(ingredient: Ingredient) {
     const { name, imageURL } = ingredient;
     return (
         <>
-            <div className="hover-3d">
-            <figure className="max-w-100 rounded-2xl">
-                <div>
-                    <div className="card bg-base-100 w-96 shadow-sm">
+            <div className="hover-3d h-full">
+            <figure className="max-w-100 rounded-2xl h-full">
+                <div className="h-full w-full">
+                    <div className="card bg-base-100 shadow-sm h-full">
                         <figure>
-                            <img
-                            src={`${imageURL}/small`}
+                            <img className="aspect-ratio-4/3"
+                            src={`${imageURL}/medium`}
                             alt={`${name} picture`} />
                         </figure>
                         <div className="card-body">
-                            <h3 className="card-title">{name}</h3>
+                            <h5 className="card-title text-wrap">{name}</h5>
                         </div>
                     </div>
                 </div>
