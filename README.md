@@ -5,6 +5,7 @@
 This project is a Single Page Application (SPA) for recipe discovery, developed as part of the Per Scholas program. The application uses TheMealDB API to browse categories, search recipes, view recipe details, and manage a favorites list.
 
 The base requirements included:
+
 - Use `useState` + `useEffect` for API calls
 - Handle loading and error states
 - Custom hooks (`useFetch`, `useLocalStorage`)
@@ -65,7 +66,7 @@ This project was built iteratively, refactoring multiple times as I progressed t
 
 Deployment will be done when a hosting URL is available. `HashRouter` is currently used for compatibility with static hosting.
 
-**Deployment URL:** _(to be completed)_
+**Deployment URL:** [here](https://chadgarc.github.io/SBA10-Recipe-Discovery/)
 
 ---
 
