@@ -5,6 +5,7 @@ import { Category } from "./Layout/Body/Category"
 import { Recipe } from "./Layout/Body/Recipe"
 import { Favorites } from "./Layout/Body/Favorites"
 import { Search } from "./Layout/Body/Search"
+import {Ingredients} from "./Layout/Body/Ingredients"
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
             <Route path="/recipe/:recipeId" element={<Recipe />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/search/:query" element={<Search />} />
-            <Route path="/ingredients" element={<Search />} />
+            <Route path="/ingredients" element={<Ingredients/>} />
           </Route>
         </Routes>
       </HashRouter>

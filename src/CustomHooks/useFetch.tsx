@@ -4,7 +4,7 @@ import type { FetchParams } from "../types";
 
 export function useFetch({query, type = "search"}:FetchParams){
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [data, setData] = useState(null);
 
     useEffect(() => {

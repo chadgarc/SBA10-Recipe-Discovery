@@ -1,17 +1,18 @@
 import { useDataContext } from "../../contextsAndProviders/DataContext";
 import { LetterPagination } from "../../Components/LetterPagination";
+import { RecipesCardList } from "../../Components/RecipesPresentation/RecipesCardList";
 
 export function Home() {
     const { categories, recipes, loading } = useDataContext();
 
     return (
-        <section className="py-6">
+        <section className="py-6 w-full">
             <h2 className="text-xl font-semibold mb-4 text-center">Explore Recipes</h2>
 
             <div className="mb-6">
                 <h3 className="text-lg font-semibold mb-2 text-center">By Category</h3>
                 <div className="join flex-wrap justify-center gap-2">
-                    {categories.map((category) => (
+                    {categories?.map((category) => (
                         <button key={category} className="join-item btn btn-sm btn-outline">
                             {category}
                         </button>
@@ -19,21 +20,17 @@ export function Home() {
                 </div>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-6 flex flex-col justify-center items-center">
                 <h3 className="text-lg font-semibold mb-2 text-center">Browse by Letter</h3>
                 <LetterPagination />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-                {loading && <p>Loading...</p>}
-                {!loading && recipes.map((recipe) => (
-                    <div key={recipe.id} className="card bg-base-100 shadow-xl">
-                        <figure><img src={recipe.imageURL} alt={recipe.name} /></figure>
-                        <div className="card-body">
-                            <h2 className="card-title">{recipe.name}</h2>
-                        </div>
-                    </div>
-                ))}
+            <div className="mx-auto">
+                {loading && <p className="mx-auto">Loading...</p>}
+                {!loading && recipes &&
+                <section className="mx-auto">
+                    <RecipesCardList recipes={recipes} />
+                </section>}
             </div>
         </section>
     );

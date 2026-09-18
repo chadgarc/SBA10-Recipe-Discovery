@@ -2,7 +2,6 @@ import type { Meal, Ingredient } from "../types";
 
 
 const BASE_URL = 'https://themealdb.com/api/json/v1/1/'
-const INGREDIENT_IMAGE_URL = 'https://themealdb.com/images/ingredients/'
 
 export async function fetchBySearch(query: string) {
     try {

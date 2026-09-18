@@ -12,7 +12,7 @@ export function Search() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
                 {loading && <p>Loading...</p>}
                 {error && <p>Error: {error.message}</p>}
-                {!loading && !error && recipes.map((recipe) => (
+                {!loading && !error && recipes && recipes.map((recipe) => (
                     <div key={recipe.id} className="card bg-base-100 shadow-xl">
                         <figure><img src={recipe.imageURL} alt={recipe.name} /></figure>
                         <div className="card-body">
