@@ -1,4 +1,5 @@
 import type { Meal, Ingredient } from "../types";
+import { FetchError } from "../ErrorHandling/ErrorHandler";
 
 
 const BASE_URL = 'https://themealdb.com/api/json/v1/1/'
@@ -10,7 +11,7 @@ export async function fetchBySearch(query: string) {
         if(!data.meals) return [];
         return data.meals.map((meal: any) => normalizeMeal(meal));
     } catch (error) {
-        throw new Error("Failed to search data:" + error);
+        throw new FetchError("Failed to search data:" + error);
     }
 }
 
@@ -21,7 +22,7 @@ export async function fetchRecipeById(id: string) {
         if(!data.meals) return [];
         return [normalizeMeal(data.meals[0])];
     } catch (error) {
-        throw new Error("Failed to lookup recipe:" + error);
+        throw new FetchError("Failed to lookup recipe:" + error);
     }
 }
 
@@ -32,7 +33,7 @@ export async function fetchRecipesStartingWithLetter(letter: string) {
         if(!data.meals) return [];
         return data.meals.map((meal: any) => normalizeMeal(meal));
     } catch (error) {
-        throw new Error(`Failed to fetch recipes starting with ${letter}: ${error}`);
+        throw new FetchError(`Failed to fetch recipes starting with ${letter}: ${error}`);
     }
 }
 
@@ -43,7 +44,7 @@ export async function fetchByCategory(category: string) {
         if(!data.meals) return [];
         return data.meals.map((meal: any) => normalizeMeal(meal));
     } catch (error) {
-        throw new Error(`Failed to fetch category ${category}: ${error}`);
+        throw new FetchError(`Failed to fetch category ${category}: ${error}`);
     }
 }
 
@@ -60,7 +61,7 @@ export async function fetchByIngredient(ingredient: string) {
             } as Meal;
         });
     } catch (error) {
-        throw new Error(`Failed to fetch recipes by ingredient ${ingredient}: ${error}`);
+        throw new FetchError(`Failed to fetch recipes by ingredient ${ingredient}: ${error}`);
     }
 }
 
@@ -72,7 +73,7 @@ export async function fetchCategories() {
         console.log(data.meals.map((category: any) => `${category.strCategory}`));
         return data.meals.map((category: any) => `${category.strCategory}`);
     } catch (error) {
-        throw new Error("Failed to fetch categories:" + error);
+        throw new FetchError("Failed to fetch categories:" + error);
     }
 }
 
@@ -86,7 +87,7 @@ export async function fetchIngredientsList() {
             return { id: idIngredient, name: strIngredient, imageURL: strThumb } as Ingredient
         });
     } catch (error) {
-        throw new Error("Failed to fetch ingredients:" + error);
+        throw new FetchError("Failed to fetch ingredients:" + error);
     }
 }
 
@@ -102,7 +103,7 @@ export async function fetchRandomRecipes(count = 10) {
         );
         return recipes;
     } catch (error) {
-        throw new Error("Failed to fetch random recipes: " + error);
+        throw new FetchError("Failed to fetch random recipes: " + error);
     }
 }
 
@@ -113,7 +114,7 @@ export async function fetchRandomRecipe(){
         if(!data.meals) return [];
         return [normalizeMeal(data.meals[0])];
     } catch (error) {
-        throw new Error("Failed to fetch random recipe: " + error);
+        throw new FetchError("Failed to fetch random recipe: " + error);
     }
 }
 
