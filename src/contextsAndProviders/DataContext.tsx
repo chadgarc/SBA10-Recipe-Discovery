@@ -7,7 +7,6 @@ const DataContext = createContext<DataContextType | null>(null);
 export function DataContextProvider({ children }: { children: React.ReactNode }) {
     const [searchQuery, setSearchQuery] = useState('');
     const [fetchType, setFetchType] = useState<queryType>('search');
-    
     const { data: recipes, loading, error } = useFetch({ query: searchQuery, type: fetchType });
     const { data: categories } = useFetch({ query: '', type: 'categories' });
     const {data: ingredients} = useFetch({query: '', type: 'ingredients'});

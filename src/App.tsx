@@ -22,6 +22,7 @@ function App() {
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/search/:query" element={<Search />} />
               <Route path="/ingredients" element={<Ingredients/>} />
+              <Route path="/ingredients/:ingredient" element={<Ingredients/>} />
             </Route>
           </Routes>
         </FavoritesProvider>
