@@ -2,6 +2,20 @@ import { useState, useEffect } from "react";
 import * as FetchData from "./FetchData";
 import type { FetchParams } from "../types";
 
+/**
+ * Custom hook that fetches data from TheMealDB API based on query and type parameters.
+ * Handles loading states, error handling, and data fetching lifecycle internally.
+ *
+ * @param {FetchParams} params - The fetch parameters including query and type
+ * @param {string} [params.query] - The search query or identifier
+ * @param {string} params.type - The type of fetch to perform (search, category, letter, etc.)
+ * @returns {{ data: any[], loading: boolean, error: any }} An object containing the fetched data, loading state, and any error
+ *
+ * @example
+ * const { data, loading, error } = useFetch({ query: 'chicken', type: 'search' });
+ * if (loading) return <Spinner />;
+ * return <RecipeList recipes={data} />;
+ */
 export function useFetch({query, type = "search"}:FetchParams){
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);

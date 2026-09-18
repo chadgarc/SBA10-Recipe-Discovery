@@ -1,6 +1,16 @@
 import type { Meal } from "../../types";
 import { Link } from "react-router-dom";
 
+/**
+ * A reusable card component that displays a meal's image and name.
+ * Clicking the card navigates to the recipe detail page.
+ *
+ * @param {Meal} recipe - The meal object to display
+ * @returns {JSX.Element} A clickable card component
+ *
+ * @example
+ * <RecipeCard recipe={meal} />
+ */
 export function RecipeCard(recipe: Meal){
     const {id, name, imageURL} = recipe;
     return (
@@ -20,14 +30,7 @@ export function RecipeCard(recipe: Meal){
                     </div>
                 </div>
             </figure>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
             </div>
         </Link>
     )
