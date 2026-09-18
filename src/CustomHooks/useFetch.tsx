@@ -34,6 +34,9 @@ export function useFetch({query, type = "search"}:FetchParams){
                 case "random10":
                     setData(await FetchData.fetchRandomRecipes(10));
                     break;
+                case "id":
+                    setData(await FetchData.fetchRecipeById(query || ''));
+                    break;
                 default:
                     break;
             }}catch(e){

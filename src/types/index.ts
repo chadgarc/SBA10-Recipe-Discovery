@@ -1,5 +1,5 @@
 
-export type queryType = 'search' | 'category' | 'ingredient' | 'categories' | 'random' | 'random10' | 'letter' | 'ingredients';
+export type queryType = 'search' | 'category' | 'ingredient' | 'categories' | 'random' | 'random10' | 'letter' | 'ingredients' | 'id';
 
 export interface FetchParams {
     query?: string;
@@ -35,8 +35,6 @@ export interface DataContextType {
     setSearchQuery: (searchQuery: string) => void;
     recipes: Meal[];
     searchQuery: string;
-    favorites: Meal[];
-    toggleFavorites: (recipe: Meal) => void;
     categories: string[];
     loading: boolean;
     error: any;

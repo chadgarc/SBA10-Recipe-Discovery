@@ -17,7 +17,7 @@ export async function fetchRecipeById(id: string) {
     try {
         const response = await fetch(BASE_URL + 'lookup.php?i=' + id);
         const data = await response.json();
-        return normalizeMeal(data.meals[0]);
+        return [normalizeMeal(data.meals[0])];
     } catch (error) {
         throw new Error("Failed to lookup recipe:" + error);
     }
