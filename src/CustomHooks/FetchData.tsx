@@ -1,4 +1,4 @@
-import type { Meal } from "../types";
+import type { Meal, Ingredient } from "../types";
 
 
 const BASE_URL = 'https://themealdb.com/api/json/v1/1/'
@@ -68,6 +68,19 @@ export async function fetchCategories() {
         return data.meals.map((category: any) => `${category.strCategory}`);
     } catch (error) {
         throw new Error("Failed to fetch categories:" + error);
+    }
+}
+
+export async function fetchIngredientsList() {
+    try {
+        const response = await fetch(BASE_URL + 'list.php?i=list');
+        const data = await response.json();
+        return data.meals.map((ing: any) => {
+            const { idIngredient, strIngredient, strThumb } = ing;
+            return { id: idIngredient, name: strIngredient, imageURL: strThumb } as Ingredient
+        });
+    } catch (error) {
+        throw new Error("Failed to fetch ingredients:" + error);
     }
 }
 

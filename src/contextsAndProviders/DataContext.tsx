@@ -11,8 +11,14 @@ export function DataContextProvider({ children }: { children: React.ReactNode })
     
     const { data: recipes, loading, error } = useFetch({ query: searchQuery, type: fetchType });
     const { data: categories } = useFetch({ query: '', type: 'categories' });
-    
+    const {data: ingredients} = useFetch({query: '', type: 'ingredients'});
+
     const isLoading = loading;
+    
+    const getRecipesBySearch = (query: string) => {
+        setSearchQuery(query);
+        setFetchType('search');
+    };
     
     const getRecipesByLetter = (query: string) => {
         setSearchQuery(query);
@@ -44,7 +50,7 @@ export function DataContextProvider({ children }: { children: React.ReactNode })
     }, [favorites]);
     
     return (
-        <DataContext.Provider value={{ getRecipesByLetter, getRecipesByCategory, getRecipesByIngredient, getRecipesByRandom, setSearchQuery, recipes, searchQuery, favorites, toggleFavorites, categories, loading, error, isLoading }}>
+        <DataContext.Provider value={{ ingredients, getRecipesBySearch, getRecipesByLetter, getRecipesByCategory, getRecipesByIngredient, getRecipesByRandom, setSearchQuery, recipes, searchQuery, favorites, toggleFavorites, categories, loading, error, isLoading }}>
             {children}
         </DataContext.Provider>
     );
